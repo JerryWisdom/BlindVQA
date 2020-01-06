@@ -1,0 +1,28 @@
+<view class="{{showView?'view_hide':'add__icon'}}"  style="margin-top:20px" bindtap='addPicture'>  
+      <image src="../../images/add_picture.png" /> 
+</view>
+<text style="text-align: center; margin-top:5px; margin-bottom:5px">Select a picture from the album or Take a photo</text>
+
+<view class="{{showView?'view_show':'view_hide'}}" style="padding:0px">
+    <view style="background-color:#e6e6e6">
+    <image src="{{chooseImageSrc}}" class="{{showView?'view_show':'view_hide'}}"  style="margin: 0 auto;justify-content: center;align-items: center;" bindtap='addPicture' mode="aspectFit" />
+    </view>
+
+    <view class="itemView" style="padding:15px" >问题：     
+        <input bindinput='QuesInput' placeholder="请输入问题" value="{{ques}}" class="inp" selectable='true'></input>
+        <button class="sendq" type="primary" bindtap='send' style = "margin-top:20px; margin-bottom:15px">Send Question</button>
+        <button type="warn" bindtap="qingkong" style="background:#d0e0e3;color:#000000; margin-bottom:10px" >Clear Question</button>
+    </view>
+    <view class="item-view" style="padding:15px">答案：
+        <text selectable='true'>{{answer}}</text>
+    </view>
+
+</view>
+
+  
+
+
+
+
+
+

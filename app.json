@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/user/user",
+    "pages/vqa/vqa",
+    "pages/user/about/about",
+    "pages/user/feedback/feedback"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "AlphaSee",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
+    "list": [
+      {
+        "iconPath": "images/box_1.png",
+        "selectedIconPath": "images/box_1.png",
+        "pagePath": "pages/index/index",
+        "text": "Play"
+      },
+      {
+        "iconPath": "images/user_1.png",
+        "selectedIconPath": "images/user_1.png",
+        "pagePath": "pages/user/user",
+        "text": "User"
+      }
+    ]
+  },
+  "plugins": {
+    "WechatSI": {
+      "version": "0.1.0",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,43 @@
+/* pages/addcard/bank/bank.wxss */
+.view{
+  padding: 13px;
+}
+.itemView {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.inp {
+  font-size: 18px;
+  margin-top: 8px; 
+  margin-bottom: 13px;
+}
+.sendq {
+  margin-bottom: 6px;
+}
+.item-view {
+  font-size: 18px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+.add__icon {  
+  width: 60px;  
+  height: 60px;  
+  margin: 0 auto;  
+  justify-content: center;
+  align-items: center;
+  display: block;
+}  
+.add__icon image {  
+  display: block;  
+  width: 100%;  
+  height: 100%;  
+} 
+.view_hide{   
+ display: none;   
+}   
+.view_show{   
+ display: block;  
+}  
+
+
