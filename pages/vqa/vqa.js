@@ -152,6 +152,11 @@ Page({
             console.log("网络失败", res)
           }
         })
+      },fail :function(res){
+        wx.showToast({
+          title: '获取答案失败',
+          image: '/images/fail.png',
+        })
       }
     })
   },
@@ -251,12 +256,6 @@ Page({
     var that = this;
     var chinese = this.data.chi;
     var content = this.data.answer;
-    if (content == '') {
-      wx.showToast({
-        title: '获取答案失败',
-        image: '/images/fail.png',
-      })
-    }
     plugin.textToSpeech({  //将答案朗读出来给盲人听
       lang: "zh_CN",
       tts: true,
