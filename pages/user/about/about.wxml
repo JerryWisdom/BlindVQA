@@ -3,7 +3,7 @@
 <view class="container">
 <view class="version">
       <view class="version-title">
-        <text class="title-name">AlphaSee</text>
+        <text class="title-name">Blind VQA</text>
         <text class="version-text">公益项目</text>
       </view>
       <view bindtap="toggleLog">
@@ -15,13 +15,12 @@
     <view class="describe" wx:if="{{!showLog}}">
         <text class="desc-title">简介</text>
         <text class="desc-content">我们的身边有很多视障者，他们或许来到这个世界就未曾看到过五彩斑斓的世界。</text>
-        <text class="desc-content">AlphaSee是一款帮助盲人感知身边的事物的微信小程序，实现集图片，文字和语音识别、合成、翻译为一体的多模态智能交互。</text>
-        <text class="desc-content">AlphaSee用微薄的力量，只为给盲人带来便利，让世界多一点温暖和光明。</text>
+        <text class="desc-content">Blind VQA是一款帮助盲人感知身边的事物的微信小程序，实现集图片-文字问答和语音识别、合成、翻译为一体的多模态智能交互，还添加了画板等辅助盲人表达。</text>
         <text class="desc-content"> </text>
         <text class="desc-content"> </text>
-        <text class="desc-content" style='font-size:30rpx;color:#7aa0cb;line-height:2;'>在此诚挚地欢迎各大公众号关联小程序，并期待与您的合作。AppID：wx7a78d2696dba12a2</text>
-        <text class="desc-content"> </text>
-        <text class="desc-content"> </text>
+        <text class="desc-content" style='font-size:30rpx;color:#7aa0cb;line-height:2;'>在此诚挚地欢迎各大公众号关联小程序，并期待与您的合作，为给盲人带来便利，让世界多一点温暖和光明。</text>
+        <text class="desc-content">AppID：wx7a78d2696dba12a2 </text>
+        <text class="desc-content">Github地址：https://github.com/JerryWisdom/Blind-_VQA.git</text>
     </view>
 </view>
 </view>

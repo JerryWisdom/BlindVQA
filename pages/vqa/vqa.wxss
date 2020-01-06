@@ -4,8 +4,8 @@
 }
 .itemView {
   font-size: 18px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 6px;
+  margin-bottom: 5px;
 }
 .inp {
   font-size: 18px;
@@ -13,11 +13,11 @@
   margin-bottom: 13px;
 }
 .sendq {
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 .item-view {
   font-size: 18px;
-  margin-top: 8px;
+  margin-top: 5px;
   margin-bottom: 12px;
 }
 .add__icon {  
@@ -38,6 +38,68 @@
 }   
 .view_show{   
  display: block;  
-}  
+} 
 
+.box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+}
+.icon{
+  height: 240rpx;
+  width: 240rpx;
+}
+.speak-button{
+  height: 240rpx;
+  width: 240rpx;
+  margin-bottom: 20rpx;
+}
+.send-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120rpx;
+    height: 80rpx;
+    line-height: 75rpx;
+    background-color: #474646;
+    font-size: 32rpx;
+    color:#fff;
+    border-radius: 10rpx;
+    margin-left: 15rpx;
+}
 
+.toast{
+  background: rgba(0,0,0, 0.7);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  height: 130rpx;
+  width: 300rpx;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  position: fixed;
+  top: 340rpx;
+  left: 225rpx;
+}
+.toast text{
+  font-size: 36rpx;
+}
+.waiting-icon{
+  position: relative;
+  left: 10rpx;
+  bottom: 15rpx;
+}
+.microphone{
+  height: 80rpx;
+  width: 80rpx;
+}
+.warning{
+  height: 80rpx;
+  width: 80rpx;
+  margin-left: 20rpx;
+}
+.warning-text{
+  margin-left: 20rpx;
+}

@@ -5,12 +5,15 @@
     "pages/user/user",
     "pages/vqa/vqa",
     "pages/user/about/about",
-    "pages/user/feedback/feedback"
+    "pages/user/feedback/feedback",
+    "pages/extend/extend",
+    "pages/extend/draw/draw",
+    "pages/extend/talk/talk"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "AlphaSee",
+    "navigationBarTitleText": "Blind VQA",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -20,13 +23,19 @@
     "list": [
       {
         "iconPath": "images/box_1.png",
-        "selectedIconPath": "images/box_1.png",
+        "selectedIconPath": "images/box_2.png",
         "pagePath": "pages/index/index",
+        "text": "VQA"
+      },
+      {
+        "iconPath": "images/kefu.png",
+        "selectedIconPath": "images/custom.png",
+        "pagePath": "pages/extend/extend",
         "text": "Play"
       },
       {
         "iconPath": "images/user_1.png",
-        "selectedIconPath": "images/user_1.png",
+        "selectedIconPath": "images/user_2.png",
         "pagePath": "pages/user/user",
         "text": "User"
       }

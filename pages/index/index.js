@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Welcome to Visual Question Answer.\n Please click the avatar to begin!',
+    motto: 'Please click the avatar to begin !',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
