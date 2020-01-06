@@ -131,28 +131,34 @@ Page({
       },
       success(res) {
         console.log("send question success");
-        _this.setData({
-          answer: res.data
-        })
-        plugin.translate({
-          lfrom: "en_US",
-          lto: "zh_CN",
-          content: res.data,
-          success: function (res) {
-            if (res.retcode == 0) {
-              console.log("result", res.result);
-              _this.setData({
-                chi: res.result
-              })
-            } else {
-              console.warn("翻译失败", res)
+        if(res.data.length>=20){
+          wx.showToast({
+            title: '获取答案失败',
+            image: '/images/fail.png',
+          })
+        } else{
+          _this.setData({
+            answer: res.data
+          })
+          plugin.translate({
+            lfrom: "en_US",
+            lto: "zh_CN",
+            content: res.data,
+            success: function (res) {
+              if (res.retcode == 0) {
+                console.log("result", res.result);
+                _this.setData({
+                  chi: res.result
+                })
+              } else {
+                console.warn("翻译失败", res)
+              }
+            }, fail: function (res) {
+              console.log("网络失败", res)
             }
-          },
-          fail: function (res) {
-            console.log("网络失败", res)
-          }
-        })
-      },fail :function(res){
+          })
+        }
+      }, fail: function (res) {
         wx.showToast({
           title: '获取答案失败',
           image: '/images/fail.png',
