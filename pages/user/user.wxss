@@ -8,7 +8,7 @@
     height: 280rpx;
     border-radius: 30rpx;
     box-shadow: 0px 2px 2px 1px #cccccc;
-    background-color: #f3a09e;
+    background-color: #f3e69eea;
     overflow: hidden;
 }
 .avatar image {
@@ -151,7 +151,7 @@
 .login-btn {
   font-size: 20px;
   line-height: 85rpx;
-  background: #7aa0cb;
+  background: #62ca5e;
   color: #fff;
   text-align: center;
   border-radius: 5px;

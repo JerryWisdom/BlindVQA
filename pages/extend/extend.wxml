@@ -3,10 +3,12 @@
   
   <view class='box'>
     <image src='/images/xljj.png' class='icon-button' bindtap='gotoSmallTalk'></image>
+    <view class='text_align'>聊天室</view>
   </view>
   <view class='section'></view>
 
   <view class='box' bindtap='gotoDraw'>
     <image src='/images/hbty.png' class='icon-button'></image>
+    <view class='text_align'>涂鸦板</view>
   </view>
 </view>

@@ -1,5 +1,7 @@
 /**extend.wxss**/
-
+.container{
+  margin-top: 70px
+}
 .box{
   display: flex;
   justify-content: center;
@@ -7,7 +9,9 @@
   height: 50%;
   width: 100%;
 }
-
+.text_align{
+  text-align: center;
+}
 .icon-button{
   height: 300rpx;
   width: 300rpx;
