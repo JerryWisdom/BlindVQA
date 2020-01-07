@@ -159,23 +159,25 @@ Page({
           _this.setData({
             answer: res.data
           })
-          plugin.translate({
-            lfrom: "en_US",
-            lto: this.data.mylang,
-            content: res.data,
-            success: function (res) {
-              if (res.retcode == 0) {
-                console.log("result", res.result);
-                _this.setData({
-                  chi: res.result
-                })
-              } else {
-                console.warn("翻译失败", res)
+          if(this.data.mylang == 'zh_CN') {
+            plugin.translate({
+              lfrom: "en_US",
+              lto: this.data.mylang,
+              content: res.data,
+              success: function (res) {
+                if (res.retcode == 0) {
+                  console.log("result", res.result);
+                  _this.setData({
+                    chi: res.result
+                  })
+                } else {
+                  console.warn("翻译失败", res)
+                }
+              }, fail: function (res) {
+                console.log("网络失败", res)
               }
-            }, fail: function (res) {
-              console.log("网络失败", res)
-            }
-          })
+            })
+          }
         }
       }, fail: function (res) {
         wx.showToast({
