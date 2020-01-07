@@ -82,11 +82,11 @@ Page({
    */
   onShareAppMessage: function () {
   },
-
+  // 用户选择语言
   select_chinese: function(){
     var _this = this;
     _this.setData({
-      mylang: this.data.mylang,
+      mylang: 'zh_CN',
       showView: true
     })
   },
@@ -139,6 +139,7 @@ Page({
   send: function (res) {
     var _this = this;
     var myques = this.data.ques;
+    var userlang = this.data.mylang;
     wx.request({
       url: 'http://514d7fa2.cpolar.io/question', //http://192.168.0.105:8880
       method: 'post',
@@ -157,12 +158,13 @@ Page({
           })
         } else{
           _this.setData({
-            answer: res.data
+            answer: res.data,
+            chi: res.data
           })
-          if(this.data.mylang == 'zh_CN') {
+          if(userlang == 'zh_CN') {
             plugin.translate({
               lfrom: "en_US",
-              lto: this.data.mylang,
+              lto: userlang,
               content: res.data,
               success: function (res) {
                 if (res.retcode == 0) {
@@ -274,7 +276,7 @@ Page({
       lang: this.data.mylang
     })
     wx.showToast({
-      title: '开始识别',
+      title: '按住识别',
       image: '/images/microphone.png',
       duration: 800
     })
@@ -310,6 +312,7 @@ Page({
     that.setData({
       recording: false
     })
+    console.log(chinese);
     plugin.textToSpeech({  //将答案朗读出来给盲人听
       lang: this.data.mylang,
       tts: true,
@@ -335,12 +338,13 @@ Page({
         })
         innerAudioContext.onEnded(function () {
           wx.stopBackgroundAudio();
+          wx.hideLoading();
           manager.start({
             lang: this.data.mylang
           })
-          setTimeout(function () {
-            wx.hideLoading()
-          }, 300)
+          // setTimeout(function () {
+          //   wx.hideLoading()
+          // }, 300)
         })
       },
       fail: function (res) {
