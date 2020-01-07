@@ -1,15 +1,19 @@
-<view class="{{showView?'view_hide':'add__icon'}}"  style="margin-top:20px" bindtap='addPicture'>  
-      <image src="../../images/add_picture.png" /> 
+<view class="{{showView?'view_hide':'select_lang'}}"  style="margin-top:200px" >
+    <view class='text_align'>Select Language</view>
+    <button type="primary" bindtap='select_chinese' style = "margin-top:25px; margin-bottom:10px">Chinese</button>
+    <button type="primary" bindtap="select_english" style = "margin-top:20px; margin-bottom:10px">English</button>
+    <!-- <view class="initial" bindtap='addPicture'>
+          <image class='pic_icon' src='../../images/add_picture.png'></image>
+    </view> -->
 </view>
-<text style="text-align: center; margin-top:5px; margin-bottom:5px">Select a picture from the album or Take a photo</text>
 
 <view class="{{showView?'view_show':'view_hide'}}" style="padding:0px">
-    <view style="background-color:#e6e6e6">
-    <image src="{{chooseImageSrc}}" class="{{showView?'view_show':'view_hide'}}"  style="margin: 0 auto;justify-content: center;align-items: center;" bindtap='addPicture' mode="aspectFit" />
+    <view style="background-color:#ffffff">
+    <image src="{{chooseImageSrc? chooseImageSrc: '../../images/add_picture.png' }}" class="{{showView?'view_show':'view_hide'}}"  style="margin: 0 auto;justify-content: center;align-items: center;" bindtap='addPicture' mode="aspectFit" />
     </view>
 
     <view class="itemView" style="padding:15px" >问题：     
-        <input bindinput='QuesInput' placeholder="请输入问题" value="{{ques}}" class="inp" selectable='true'></input>
+        <input bindinput='QuesInput' placeholder="请输入问题或按语音按钮提问" value="{{ques}}" class="inp" selectable='true'></input>
         <button class="sendq" type="primary" bindtap='send' style = "margin-top:20px; margin-bottom:10px">Send Question</button>
         <button type="warn" bindtap="qingkong" style="background:#d0e0e3;color:#000000" >Clear Question</button>
     </view>
@@ -24,11 +28,11 @@
       </view>
     </view>
     
-    <view class='toast' wx:if="{{showmicro}}" style="{{showmicro?'  transform: scale(-1);':''}}">
+    <!-- <view class='toast' wx:if="{{showmicro,recording}}" style="{{showmicro&&recording?'  transform: scale(-1);':''}}">
     <image src='/images/microphone.png' class='microphone'></image>
       <text>正在识别</text>
       <waiting-icon class='waiting-icon'></waiting-icon>
-    </view>
+    </view> -->
 
     <view class='toast' wx:if="{{shownull}}" style="{{shownull?'  transform: scale(-1);':''}}">
       <image src='/images/fail.png' class='warning'></image>

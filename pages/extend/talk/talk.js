@@ -87,31 +87,27 @@ Page({
   // 文字转语音（语音合成）
   wordtospeak: function (e) {
     var that = this
-
     var content = e.currentTarget.dataset.content
-
     if (content==''){
       wx.showToast({
         title: '请输入文字',
         image: '/images/fail.png',
       })
     }
-    
     plugin.textToSpeech({
-      lang: "en_US",
+      lang: "zh_CN",
       tts: true,
       content: content,
       success: function (res) {
+        console.log(" tts", res)
         innerAudioContext.autoplay = true
         innerAudioContext.src = res.filename
         innerAudioContext.onPlay(() => {
           console.log('开始播放')
         })
-        
         wx.showLoading({
           title: '正在播放',
         })
-
         innerAudioContext.onError((res) => {
           if (res) {
             wx.hideLoading(),
@@ -121,11 +117,15 @@ Page({
               })
           }
         })
-
-        innerAudioContext.onEnded(function(){
-          wx.hideLoading()
+        innerAudioContext.onEnded(function () {
+          wx.stopBackgroundAudio();
+          manager.start({
+            lang: "zh_CN"
+          })
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 300)
         })
-        console.log("succ tts", res.filename)
       },
       fail: function (res) {
         console.log("fail tts", res)

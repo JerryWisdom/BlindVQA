@@ -1,3 +1,5 @@
+const app = getApp()
+
 var user = require("../../utils/user.js");
 var plugin = requirePlugin("WechatSI")
 let manager = plugin.getRecordRecognitionManager()
@@ -8,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    mylang: '',
     //相册或者拍照获取路径
     chooseImageSrc: '',
     imageUrl: '',
@@ -18,7 +21,8 @@ Page({
     //语音识别模块
     shownull: false,
     showmicro: false,
-    chi: '' //翻译后的答案
+    chi: '', //翻译后的答案
+    recording: false
   },
 
   /**
@@ -46,7 +50,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.addPicture()
+    // this.addPicture()
   },
   /**
    * 生命周期函数--监听页面显示
@@ -77,6 +81,21 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+  },
+
+  select_chinese: function(){
+    var _this = this;
+    _this.setData({
+      mylang: this.data.mylang,
+      showView: true
+    })
+  },
+  select_english: function(){
+    var _this = this;
+    _this.setData({
+      mylang: 'en_US',
+      showView: true
+    })
   },
 
   // 选取图片并上传
@@ -142,7 +161,7 @@ Page({
           })
           plugin.translate({
             lfrom: "en_US",
-            lto: "zh_CN",
+            lto: this.data.mylang,
             content: res.data,
             success: function (res) {
               if (res.retcode == 0) {
@@ -197,7 +216,7 @@ Page({
     var that = this;
     manager.onStart = (res) => {
       that.setData({
-        showmicro: true
+        showmicro: false
       })
     }
     // 识别结束事件
@@ -247,28 +266,56 @@ Page({
 
   //手指按下
   touchdown_plugin: function (e) {
+    var that = this;
     wx.stopBackgroundAudio();
     manager.start({
-      lang: "zh_CN"
+      lang: this.data.mylang
+    })
+    wx.showToast({
+      title: '开始识别',
+      image: '/images/microphone.png',
+      duration: 800
+    })
+    that.setData({
+      showmicro: true,
+      recording: true
     })
   },
   //手指松开
-  touchup_plugin: function () {
-    manager.stop();
+  touchup_plugin: function (e) {
+    var that = this;
+    if (that.data.recording) {
+      manager.stop()
+      wx.showToast({
+        title: '停止识别',
+        image: '/images/stop.png',
+        duration: 800
+      })
+      that.setData({
+        showmicro: false,
+        recording: false
+      })
+    }
   },
 
   // 文字转语音（语音合成）
   wordtospeak: function (e) {
     var that = this;
     var chinese = this.data.chi;
-    var content = this.data.answer;
+    if (this.data.recording) {
+      manager.stop
+    }
+    that.setData({
+      recording: false
+    })
     plugin.textToSpeech({  //将答案朗读出来给盲人听
-      lang: "zh_CN",
+      lang: this.data.mylang,
       tts: true,
       content: chinese,
       success: function (res) {
-        innerAudioContext.autoplay = true;
-        innerAudioContext.src = res.filename;
+        console.log(" tts", res)
+        innerAudioContext.autoplay = true
+        innerAudioContext.src = res.filename
         innerAudioContext.onPlay(() => {
           console.log('开始播放')
         })
@@ -277,17 +324,22 @@ Page({
         })
         innerAudioContext.onError((res) => {
           if (res) {
-            wx.hideLoading(),
-            wx.showToast({
-              title: '发生错误',
-              image: '/images/fail.png',
-            })
+            wx.hideLoading()
+              // wx.showToast({
+              //   title: '文本格式错误',
+              //   image: '/images/fail.png',
+              // })
           }
         })
         innerAudioContext.onEnded(function () {
-          wx.hideLoading()
+          wx.stopBackgroundAudio();
+          manager.start({
+            lang: this.data.mylang
+          })
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 300)
         })
-        console.log("succ tts", res.filename)
       },
       fail: function (res) {
         console.log("fail tts", res)
