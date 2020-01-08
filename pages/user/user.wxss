@@ -21,7 +21,7 @@
 .nick-name {
   display: flex;
   justify-content: center;
-  color: #ffffff;
+  color: #24963d;
   font-size: 35rpx;
   position: absolute;
   top: 225rpx;

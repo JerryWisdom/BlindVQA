@@ -1,13 +1,22 @@
 /**extend.wxss**/
 .container{
-  margin-top: 70px
+  margin-top: 55px
 }
-.box{
+.box1{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50%;
   width: 100%;
+  margin-bottom: 20px
+}
+.box2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+  margin-top: 20px
 }
 .text_align{
   text-align: center;

@@ -1,0 +1,43 @@
+<view class="view_show" style="padding:0px">
+    <view style="background-color:#ffffff">
+    <image src="{{chooseImageSrc? chooseImageSrc: '../../images/add_picture.png' }}" class="view_show"  style="margin: 0 auto;justify-content: center;align-items: center;" bindtap='addPicture' mode="aspectFit" />
+    </view>
+
+    <view class="itemView" style="padding:15px" >Question：     
+        <input bindinput='QuesInput' placeholder="Please input or longclick the voice button" value="{{ques}}" class="inp" selectable='true'></input>
+        <button class="sendq" type="primary" bindtap='send' style = "margin-top:20px; margin-bottom:10px">Send Question</button>
+        <button type="warn" bindtap="qingkong" style="background:#d0e0e3;color:#000000" >Clear Question</button>
+    </view>
+    <view class="item-view" style="padding:15px">Answer：
+        <text selectable='true'>{{answer}}</text>
+    </view>
+
+    <view class='box'>
+      <image src='/images/button.png' class='speak-button' catchtouchstart="touchdown_plugin" catchtouchend="touchup_plugin"></image>
+      <view class="send-btn" bindtap='wordtospeak' data-content="{{answer}}">
+            <image class='icon' src='/images/speak.png'></image>
+      </view>
+    </view>
+    
+    <!-- <view class='toast' wx:if="{{showmicro,recording}}" style="{{showmicro&&recording?'  transform: scale(-1);':''}}">
+    <image src='/images/microphone.png' class='microphone'></image>
+      <text>Recognizing</text>
+      <waiting-icon class='waiting-icon'></waiting-icon>
+    </view> -->
+
+    <view class='toast' wx:if="{{shownull}}" style="{{shownull?'  transform: scale(-1);':''}}">
+      <image src='/images/fail.png' class='warning'></image>
+      <text class='warning-text'>Please speak</text>
+    </view>
+
+</view>
+
+
+
+  
+
+
+
+
+
+

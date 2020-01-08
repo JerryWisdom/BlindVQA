@@ -4,6 +4,8 @@
     "pages/logs/logs",
     "pages/user/user",
     "pages/vqa/vqa",
+    "pages/vqa/vqae/vqae",
+    "pages/vqa/vqac/vqac",
     "pages/user/about/about",
     "pages/user/feedback/feedback",
     "pages/extend/extend",
