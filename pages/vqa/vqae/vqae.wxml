@@ -1,6 +1,6 @@
 <view class="view_show" style="padding:0px">
     <view style="background-color:#ffffff">
-    <image src="{{chooseImageSrc? chooseImageSrc: '../../images/add_picture.png' }}" class="view_show"  style="margin: 0 auto;justify-content: center;align-items: center;" bindtap='addPicture' mode="aspectFit" />
+    <image src="{{chooseImageSrc? chooseImageSrc: '/images/add_picture.png' }}" class="view_show"  style="margin: 0 auto;justify-content: center;align-items: center;" bindtap='addPicture' mode="aspectFit" />
     </view>
 
     <view class="itemView" style="padding:15px" >Question：     
