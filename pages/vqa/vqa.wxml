@@ -1,7 +1,7 @@
 <view class="select_lang"  style="margin-top:200px" >
     <view class='text_align'>Select Language</view>
-    <button type="primary" bindtap='select_chinese' style = "margin-top:25px; margin-bottom:10px">Chinese</button>
-    <button type="primary" bindtap="select_english" style = "margin-top:20px; margin-bottom:10px">English</button>
+    <button type="primary" bindtap='select_chinese' style = "margin-top:25px; margin-bottom:10px">Chinese（中文）</button>
+    <button type="primary" bindtap="select_english" style = "margin-top:20px; margin-bottom:10px">English（英文）</button>
 </view>
   
 

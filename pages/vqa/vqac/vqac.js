@@ -98,7 +98,7 @@ Page({
           chooseImageSrc: tempFilePaths
         })
         wx.uploadFile({
-          url: this.data.pic_url, 
+          url: _this.data.pic_url, 
           filePath: imgfilePath,
           name: 'image',
           header: {
