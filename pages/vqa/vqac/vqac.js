@@ -11,8 +11,8 @@ Page({
    */
   data: {
     mylang: 'zh_CN',
-    pic_url: 'http://239837d0.cpolar.io/register',  //http://192.168.0.105:8880为服务器地址
-    ques_url: 'http://239837d0.cpolar.io/question',
+    pic_url: 'http://hducsrao.xyz/register/',  //http://192.168.0.105:8880为服务器地址
+    ques_url: 'http://hducsrao.xyz/question/',
     //相册或者拍照获取路径
     chooseImageSrc: '',
     imageUrl: '',

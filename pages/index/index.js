@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    motto: '请点击头像开始吧！',  //Please click the avatar to begin !
+    motto: '请点击头像开始吧！',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')

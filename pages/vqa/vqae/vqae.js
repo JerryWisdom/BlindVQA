@@ -11,8 +11,8 @@ Page({
    */
   data: {
     mylang: 'en_US',
-    pic_url: 'http://239837d0.cpolar.io/register',  //http://192.168.0.105:8880为服务器地址
-    ques_url: 'http://239837d0.cpolar.io/question',
+    pic_url: 'http://hducsrao.xyz/register/',  //http://192.168.0.105:8880为服务器地址
+    ques_url: 'http://hducsrao.xyz/question/',
     //相册或者拍照获取路径
     chooseImageSrc: '',
     imageUrl: '',
@@ -109,7 +109,7 @@ Page({
           },
           success(res) {
             wx.showToast({
-              title: 'Picture Upload Success！'
+              title: 'Upload Success！'
             })
           }
         })
@@ -137,7 +137,7 @@ Page({
         console.log("send question success");
         if(res.data.length>=20){
           wx.showToast({
-            title: 'Fetch Answer Failed',
+            title: 'Answer Failed',
             image: '/images/fail.png',
           })
         } else{
@@ -167,7 +167,7 @@ Page({
         }
       }, fail: function (res) {
         wx.showToast({
-          title: 'Fetch Answer Failed',
+          title: 'Answer Failed',
           image: '/images/fail.png',
         })
       }
@@ -180,7 +180,7 @@ Page({
     var content = e.detail.value;
     if (content == '') {
       wx.showToast({
-        title: 'Ask Voice Question!',
+        title: 'Ask Voice!',
         image: '/images/fail.png',
       })
       _this.setData({
