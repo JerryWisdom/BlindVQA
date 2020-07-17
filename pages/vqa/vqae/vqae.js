@@ -11,8 +11,10 @@ Page({
    */
   data: {
     mylang: 'en_US',
-    pic_url: 'http://hducsrao.xyz/register/',  //http://192.168.0.105:8880为服务器地址
-    ques_url: 'http://hducsrao.xyz/question/',
+    pic_url: 'https://hducsrao.xyz/register/',  //https://192.168.0.105:8880为服务器地址
+    ques_url: 'https://hducsrao.xyz/question/',
+    quesIP: '',
+    // userInfo: '',
     //相册或者拍照获取路径
     chooseImageSrc: '',
     imageUrl: '',
@@ -29,6 +31,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var _this = this
     wx.setNavigationBarTitle({
       title: "Blind VQA",
       success: function (e) {
@@ -44,6 +47,42 @@ Page({
     }
     this.initRecord()
     app.getRecordAuth()
+    wx.request({
+      url: 'https://pv.sohu.com/cityjson?ie=utf-8',
+      success: function (e) {
+        var aaa = e.data.split(' ');
+        // console.log(aaa)
+        var bbb = aaa[4]
+        var ccc = bbb.replace('"', '')
+        var ddd = ccc.replace('"', '')
+        var eee = ddd.replace(',', '').split('.')
+        _this.setData({
+          quesIP: 'question' + eee[0] + eee[1] + eee[2] + eee[3]
+        })
+      },
+      fail: function () {
+        console.log("失败了");
+      }
+    })
+    // 获取用户信息
+    // wx.getSetting({
+    //   success: res => {
+    //     if (res.authSetting['scope.userInfo']) {
+    //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+    //       wx.getUserInfo({
+    //         success: res => {
+    //           // 可以将 res 发送给后台解码出 unionId
+    //           this.data.userInfo = res.userInfo
+    //           // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+    //           // 所以此处加入 callback 以防止这种情况
+    //           if (this.userInfoReadyCallback) {
+    //             this.userInfoReadyCallback(res)
+    //           }
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
   },
 
   /**
@@ -124,12 +163,17 @@ Page({
     var _this = this;
     var myques = this.data.ques;
     var userlang = this.data.mylang;
+    var post_data = {}
+    // post_data['question'] = this.data.userInfo + myques
+    post_data[_this.data.quesIP] = myques
+    console.log(_this.data.quesIP)
+    wx.showToast({
+      title: _this.data.quesIP,
+    })
     wx.request({
-      url: this.data.ques_url,
+      url: _this.data.ques_url,
       method: 'post',
-      data: {
-        question: myques
-      },
+      data: post_data,
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },

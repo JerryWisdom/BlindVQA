@@ -11,8 +11,9 @@ Page({
    */
   data: {
     mylang: 'zh_CN',
-    pic_url: 'http://hducsrao.xyz/register/',  //http://192.168.0.105:8880为服务器地址
-    ques_url: 'http://hducsrao.xyz/question/',
+    pic_url: 'https://hducsrao.xyz/register/',  //https://192.168.0.105:8880为服务器地址
+    ques_url: 'https://hducsrao.xyz/question/',
+    quesIP: '',
     //相册或者拍照获取路径
     chooseImageSrc: '',
     imageUrl: '',
@@ -29,6 +30,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var _this = this
     wx.setNavigationBarTitle({
       title: "Blind VQA",
       success: function (e) {
@@ -44,6 +46,23 @@ Page({
     }
     this.initRecord()
     app.getRecordAuth()
+    wx.request({
+      url: 'https://pv.sohu.com/cityjson?ie=utf-8',
+      success: function (e) {
+        var aaa = e.data.split(' ');
+        // console.log(aaa)
+        var bbb = aaa[4]
+        var ccc = bbb.replace('"', '')
+        var ddd = ccc.replace('"', '')
+        var eee = ddd.replace(',', '').split('.')
+        _this.setData({
+          quesIP: 'question' + eee[0] + eee[1] + eee[2] + eee[3]
+        })
+      },
+      fail: function () {
+        console.log("失败了");
+      }
+    })
   },
 
   /**
@@ -121,15 +140,38 @@ Page({
   
   // 发送问题
   send: function (res) {
-    var _this = this;
+    var that = this;
     var myques = this.data.ques;
     var userlang = this.data.mylang;
+    // var pattern2 = new RegExp("[A-Za-z]+");
+    // if (!pattern2.test(myques)) {
+    //   console.log("翻译")
+    //   plugin.translate({
+    //     lfrom: "zh_CN",
+    //     lto: "en_US",
+    //     content: myques,
+    //     success: function (res) {
+    //       if (res.retcode == 0) {
+    //         console.log("result", res.result);
+    //         that.setData({
+    //           ques: res.result
+    //         })
+    //       } else {
+    //         console.warn("翻译失败", res)
+    //       }
+    //     }, fail: function (res) {
+    //       console.log("网络失败", res)
+    //     }
+    //   })
+    // }
+    console.log(that.data.ques)
+    var post_data = {}
+    post_data[that.data.quesIP] = that.data.ques
+    console.log(post_data)
     wx.request({
       url: this.data.ques_url, 
       method: 'post',
-      data: {
-        question: myques
-      },
+      data: post_data,
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
@@ -141,7 +183,7 @@ Page({
             image: '/images/fail.png',
           })
         } else{
-          _this.setData({
+          that.setData({
             answer: res.data,
             chi: res.data
           })
@@ -153,7 +195,7 @@ Page({
               success: function (res) {
                 if (res.retcode == 0) {
                   console.log("result", res.result);
-                  _this.setData({
+                  that.setData({
                     chi: res.result
                   })
                 } else {
@@ -176,18 +218,19 @@ Page({
 
   // 问题输入框填值和清空
   QuesInput: function (e) {
-    var _this = this;
+    var that = this;
     var content = e.detail.value;
     if (content == '') {
       wx.showToast({
         title: '请点击语音按钮提问！',
         image: '/images/fail.png',
       })
-      _this.setData({
+      that.setData({
         ques: content
       })
-    } else{
-      _this.setData({
+    }
+    else{
+      that.setData({
         ques: content
       })
     }
